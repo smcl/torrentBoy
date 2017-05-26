@@ -1,11 +1,11 @@
 import os
 from flask import Flask, send_file, request, render_template, jsonify
-from tpb import load_data
+from tpb import TPB
 from torrent import start_torrenting, incoming_dir
 
 app = Flask(__name__)
 
-tpb_data = load_data()
+tpb_db = TPB()
 
 @app.route('/')
 def hello_world():
@@ -14,11 +14,8 @@ def hello_world():
 @app.route('/search', methods=['POST','GET'])
 def search():
     content = request.get_json()
-    search_term = str(content["search_term"]).upper()
-    raw_results = [ d for d in tpb_data if d and search_term in d.name.upper() ]
-
-    results = [ d.__dict__ for d in sorted(raw_results, key=lambda x: -(x.seeders)) ]
-
+    search_terms = str(content["search_term"]).upper().split(" ")
+    results = tpb_db.search(search_terms)
     return jsonify({ "results": results })#, 200
 
 @app.route('/download', methods=['POST'])

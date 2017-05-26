@@ -15,7 +15,7 @@ def ensure_dir(dir_path):
         if not os.path.isdir(dir_path):
             raise Exception("file %s exists but is not a directory" % (dir_path))
     else:
-        os.mkdir(dir_path)    
+        os.mkdir(dir_path)
 
 def grab_magnet(filename):
     ses = lt.session()
@@ -61,7 +61,6 @@ def grab_torrent(filename):
         time.sleep(1)
 
 def start_torrenting():
-    print "starting to look for torrents..."
     ensure_dir(incoming_dir)
     ensure_dir(completed_dir)
 

@@ -1,6 +1,8 @@
 <!doctype html>
 <html ng-app="torrentBoy">
     <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
         <!-- Optional theme -->
@@ -17,32 +19,33 @@
     <body ng-controller="torrentBoyController">
         <div class="container">
 
-        <img src="static/img/torrentBoy.png" />
+            <img src="static/img/torrentBoy.png" />
 
-        <div class="form-group">
-            <form role="searchForm" ng-submit="search()">
-                <input class="form-control" type="text" ng-model="searchTerm" name="text" required/>
-                <input class="btn btn-success" type="submit" id="submit" value="Search" />
-            </form>
-        </div>
+            <div class="row">
+                <div class="input-group col-xs-4">
+                    <form role="searchForm" ng-submit="search()">
+                        <input class="form-control" type="text" ng-model="searchTerm" name="text" required/>
+                        <input class="btn btn-success" type="submit" id="submit" value="Search" />
+                    </form>
+                </div>
+            </div>
 
-        <div>
-            <table class="table table-striped table-hover ">
-                <tr>
-                    <th>name</th>
-                    <th>size</th>
-                    <th>seeders</th>
-                    <th>leechers</th>
-                </tr>
 
-                <tr ng-repeat="result in results">
-                    <td><button ng-click="queue_download(result.urn, result.link)">GET</button> <a href="{{ result.link }}">{{result.name}}</a></td>
-                    <td>{{result.size}}</td>
-                    <td>{{result.seeders}}</td>
-                    <td>{{result.leechers}}</td>
-                </tr>
-            </table>
-        </div>
-        </div>
-    </body>
+            <div class="row">
+                <table class="table table-striped table-hover ">
+                    <tr>
+                        <th>name</th>
+                        <th>size</th>
+                        <th>seeders</th>
+                        <th>leechers</th>
+                    </tr>
+
+                    <tr ng-repeat="result in results">
+                        <td><button ng-click="queue_download(result.urn, result.link)">GET</button> <a href="{{ result.link }}">{{result.name}}</a></td>
+                        <td>{{result.size}}</td>
+                        <td>{{result.seeders}}</td>
+                        <td>{{result.leechers}}</td>
+                    </tr>
+                </table>
+            </div>
 </html>
