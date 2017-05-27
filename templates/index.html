@@ -25,6 +25,7 @@
                 <div class="input-group col-xs-4">
                     <form role="searchForm" ng-submit="search()">
                         <input class="form-control" type="text" ng-model="searchTerm" name="text" required/>
+                        &nbsp;
                         <input class="btn btn-success" type="submit" id="submit" value="Search" />
                     </form>
                 </div>
@@ -32,6 +33,8 @@
 
 
             <div class="row">
+                <div class="input-group col-xs-12">
+
                 <table class="table table-striped table-hover ">
                     <tr>
                         <th>name</th>
@@ -39,13 +42,14 @@
                         <th>seeders</th>
                         <th>leechers</th>
                     </tr>
-
+                </br>
                     <tr ng-repeat="result in results">
-                        <td><button ng-click="queue_download(result.urn, result.link)">GET</button> <a href="{{ result.link }}">{{result.name}}</a></td>
+                        <td><button class="btn" ng-click="queue_download(result.urn, result.link)">GET</button> <a href="{{ result.link }}">{{result.name}}</a></td>
                         <td>{{result.size}}</td>
                         <td>{{result.seeders}}</td>
                         <td>{{result.leechers}}</td>
                     </tr>
                 </table>
+                </div>
             </div>
 </html>

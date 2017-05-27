@@ -1,7 +1,7 @@
 # TODO: this takes > 6 seconds to parse the file and searching is slow - so we should really use postgresql
 
 from magnet import Magnet
-
+from util import sizeof_fmt
 failures = []
 
 
@@ -30,7 +30,7 @@ class TPB(object):
         try:
             tpb_id = int(cols[0])
             name = cols[1]
-            size = int(cols[2])
+            size = sizeof_fmt(int(cols[2]))
             seeders = int(cols[3])
             leechers = int(cols[4])
             urn = cols[5]
